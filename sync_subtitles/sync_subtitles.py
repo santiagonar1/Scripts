@@ -36,6 +36,9 @@ def main():
     parser.add_argument("-o", "--output",
                        help="Output file",
                        default="new.srt")
+    parser.add_argument("-s", "--since",
+                       help="Format HH:MM:SS,mmm, sync the subtitles since this timestamp",
+                       default="00:00:00,000")
     args = parser.parse_args()
 
     if not ctime.validate_string(args.time):
@@ -43,13 +46,17 @@ def main():
         return -1
 
     mtime = ctime.string_to_time(args.time)
+    stime = ctime.string_to_time(args.since)
     with open(args.output, "w") as output:
         for line in read(args.input_file).split("\n"):
             if SEARCH in line:
-                time1, time2 = [ctime.milliseconds_to_time(t + mtime)
-                                if args.forward
-                                else ctime.milliseconds_to_time(t - mtime)
-                                for t in get_times(line)]
+                time1, time2 = get_times(line)
+                if (time1 > stime) and args.forward:
+                    time1 = ctime.milliseconds_to_time(mtime + time1)
+                    time2 = ctime.milliseconds_to_time(mtime + time2)
+                elif time1 > stime:
+                    time1 = ctime.milliseconds_to_time(time1 - mtime)
+                    time2 = ctime.milliseconds_to_time(time2 - mtime)
                 line = "{0} {1} {2}".format(time1, SEARCH, time2)
             output.write(line + "\n")
 
