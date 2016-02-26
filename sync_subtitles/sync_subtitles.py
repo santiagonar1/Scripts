@@ -10,6 +10,9 @@ MESSAGES = {1:"The time format must be HH:MM:SS,mmm (ej.: 02:21:00,032)"}
 
 
 def read(filename):
+    """
+    Reads and returns the filename's content
+    """
     # We need to set encoding to latin-1 because the subtitles are in spanish
     with open(filename, "r", encoding="latin-1") as f:
         return f.read()
