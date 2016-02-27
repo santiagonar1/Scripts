@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 # -*- # -*- coding: utf-8 -*-
 
+"""
+Script para remplazar tabs con espacios
+
+Ejemplo:
+    python3 replace_tabs.py filename.py [-n number_spaces_per_tab]
+            [-r replace_original_file]
+
+Autor: Santiago Narvaez
+Fecha: 26.feb.2016
+"""
+
 import argparse
 import os
 

@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+"""
+Script para sincronizar los subtitulos de una pelicula
+
+Ejemplo:
+    python3 sync_subtitles.py input.srt -t HH:MM:SS,mmm [-f] [-o output.srt]
+            [-s HH:MM:SS,mmm]
+
+Autor: Santiago Narvaez
+Fecha: 26.feb.2016
+"""
+
 import custom_time as ctime
 import argparse
 
