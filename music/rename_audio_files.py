@@ -5,8 +5,10 @@
 Este sript permite renombrar archivos de audio para que tengar el
 formato '{artist} - {title}.mp3'
 """
-
-import pytag
+try:
+    import pytag
+except ImportError:
+    raise ImportError("La libreria pytag debe estar instalada. pip install pytag")
 import argparse
 import mimetypes
 import os
