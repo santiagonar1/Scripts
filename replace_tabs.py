@@ -48,6 +48,6 @@ if __name__ == "__main__":
         line = line.replace("\t", " "*args.nspaces)
         write(args.input_file+".new" , line+"\n")
 
-    if(args.replace):
+    if args.replace:
         os.remove(args.input_file)
         os.rename(args.input_file+".new", args.input_file)
