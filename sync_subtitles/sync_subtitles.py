@@ -67,7 +67,7 @@ def main():
 
     mtime = ctime.string_to_time(args.time)
     stime = ctime.string_to_time(args.since)
-    with open(args.output, "w") as output:
+    with open(args.output, "w", encoding="latin-1") as output:
         for line in read(args.input_file).split("\n"):
             if SEARCH in line:
                 time1, time2 = get_times(line)
