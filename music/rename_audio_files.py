@@ -39,14 +39,12 @@ def get_info(afile):
         return None, None
 
 def get_path(filepath):
-    if "/" not in filepath:
-        return ""
-    else:
-        return "/".join(filepath.split("/")[:-1]) + "/"
+    """Retorna el path del archivo: ej /home/p.py --> /home/"""
+    path, filename = os.path.split(filepath)
+    return path + "/" if path != "" else path
 
 def rename_file(old_name, new_name):
     os.rename(old_name, "{0}{1}".format(get_path(old_name), new_name))
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
